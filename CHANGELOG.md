@@ -1,0 +1,10 @@
+# Change Log
+All notable changes to this project will be documented in this file.
+This project adheres to [Semantic Versioning](http://semver.org/).
+
+## [Unreleased]
+
+### Added
+- `WtwUk::Cinema.all` and `WtwUk::Cinema.new(id)` for WTW Cinemas' four venues, keyed by TapOS site code, with addresses from each venue's page footer and coordinates from OpenStreetMap.
+- `WtwUk::Performance.at(id, from:, to:)`, from the what's on page's 'All Shows' request, which holds every advertised date in one request, with booking links, variants from showtime classes and titles, film years and festivals from titles.
+- Fixtures trimmed from live pages, a live shape test that checks real responses without storing them, and GitHub Actions CI and release workflows.
