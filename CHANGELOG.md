@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.0.0] - 2026-11-02
 
 ### Added
 - `WtwUk::Cinema.all` and `WtwUk::Cinema.new(id)` for WTW Cinemas' four venues, keyed by TapOS site code, with addresses from each venue's page footer and coordinates from OpenStreetMap.
