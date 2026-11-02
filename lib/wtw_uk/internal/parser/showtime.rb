@@ -35,7 +35,6 @@ module WtwUk
         # Venues differ over hyphens and en dashes in the same title
         EN_DASH = ' – '
         LANGUAGE = /\((#{Cinebase::TitleSanitizer::LANGUAGES.join('|')})\)/i
-        TIME_ZONE = 'Europe/London'
 
         # @return [Date] the local date of the showtime
         attr_reader :date
@@ -76,7 +75,7 @@ module WtwUk
         def starting_at
           hour, minute = @markup.match(START).captures.map(&:to_i)
           local = Time.utc(@date.year, @date.month, @date.day, hour, minute)
-          TZInfo::Timezone.get(TIME_ZONE).local_to_utc(local) { |periods| periods.first }.utc
+          Cinebase::London.utc(local)
         end
 
         def variant

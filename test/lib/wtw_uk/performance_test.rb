@@ -29,7 +29,7 @@ class WtwUk::PerformanceTest < Minitest::Test
   end
 
   def test_at_defaults_to_a_fortnight_from_today_in_london
-    travel_to(Time.utc(2026, 11, 2, 12)) do
+    Cinebase::London.stub(:today, Date.new(2026, 11, 2)) do
       assert_equal 12, WtwUk::Performance.at('PLATRU').count
     end
   end
@@ -124,9 +124,5 @@ class WtwUk::PerformanceTest < Minitest::Test
 
   def find(booking_id)
     performances_at('PLATRU').detect { |p| p.booking_url&.end_with?("/#{booking_id}/") }
-  end
-
-  def travel_to(time, &block)
-    Time.stub(:now, time, &block)
   end
 end

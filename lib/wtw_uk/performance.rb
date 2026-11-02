@@ -24,8 +24,6 @@ module WtwUk
     #   @option options [String] :language (nil) audio language, e.g. 'Hindi'
     #   @option options [Time] :starting_at listed start time of the performance
 
-    TIME_ZONE = 'Europe/London'.freeze
-
     # Performances within an inclusive range of showing dates, from one
     # request: the venue's programme holds every advertised date.
     # @param [String] cinema_id the venue's TapOS site code, e.g. 'PLATRU'
@@ -34,7 +32,7 @@ module WtwUk
     # @return [Array<WtwUk::Performance>]
     def self.at(
       cinema_id,
-      from: TZInfo::Timezone.get(TIME_ZONE).now.to_date,
+      from: Cinebase::London.today,
       to: from + 13
     )
       raise ArgumentError, 'to must not precede from' if to < from
