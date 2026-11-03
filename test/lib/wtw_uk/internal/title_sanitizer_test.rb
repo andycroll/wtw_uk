@@ -3,9 +3,11 @@ require_relative '../../../test_helper'
 class WtwUk::Internal::TitleSanitizerTest < Minitest::Test
   def test_plain_titles_are_unchanged
     assert_sanitized 'Ghosts: The Possession of Button House', 'Ghosts: The Possession of Button House'
-    assert_sanitized "Andrew Lloyd Webber's Starlight Express - Live On Stage",
-                     "Andrew Lloyd Webber's Starlight Express - Live On Stage"
     assert_sanitized 'GIANT - The Play', 'GIANT - The Play'
+  end
+
+  def test_live_on_stage_suffix
+    assert_sanitized "Andrew Lloyd Webber's Starlight Express", "Andrew Lloyd Webber's Starlight Express - Live On Stage"
   end
 
   def test_subtitled_copies
