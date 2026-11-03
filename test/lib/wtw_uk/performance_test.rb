@@ -63,7 +63,8 @@ class WtwUk::PerformanceTest < Minitest::Test
   def test_summer_times_are_converted_to_utc
     performance = performances_at('PLATRU').last
 
-    assert_equal 'Royal Ballet and Opera: Romeo And Juliet', performance.film_name
+    assert_equal 'Romeo And Juliet', performance.film_name
+    assert_equal 'Royal Ballet and Opera', performance.event.name
     assert_equal Time.utc(2027, 5, 25, 18, 15), performance.starting_at
     assert_equal %w(arts), performance.variant
   end
@@ -90,7 +91,8 @@ class WtwUk::PerformanceTest < Minitest::Test
   def test_event_cinema_without_its_class_is_arts
     performance = find('120565')
 
-    assert_equal 'Exhibition on Screen: Renoir & Love', performance.film_name
+    assert_equal 'Renoir & Love', performance.film_name
+    assert_equal 'Exhibition on Screen', performance.event.name
     assert_equal %w(arts), performance.variant
   end
 

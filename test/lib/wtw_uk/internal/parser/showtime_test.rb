@@ -28,8 +28,16 @@ class WtwUk::Internal::Parser::ShowtimeTest < Minitest::Test
 
   def test_language_festival_and_year_from_the_title
     assert_equal 'Hindi', parse('Ramayana: Rise of a Legend (Hindi)')[:language]
-    assert_equal 'CFF', parse('CFF: Paddington')[:festival].name
+    assert_equal 'Cambridge Film Festival', parse('CFF: Paddington')[:festival].name
     assert_equal 1971, parse('The Devils (1971)')[:film_year]
+  end
+
+  def test_performances_read_audience_labels_from_the_title
+    hash = parse('Relaxed Screening: Wicker')
+    performance = WtwUk::Performance.new(hash.merge(cinema_id: 'PLASTA', cinema_name: 'St Austell'))
+
+    assert_equal 'Wicker', performance.film_name
+    assert_equal %w(relaxed), performance.variant
   end
 
   def test_booking_url_and_date
